@@ -35,7 +35,10 @@
     <td>дефрагментација</td>
   </tr>
   <tr>
-    <td>УИ уређаји - диск</td>
+    <td colspan="2" align="center">УИ уређаји</td>
+  <tr>
+  <tr>
+    <td>Диск</td>
     <td>симулирани диск SSTF</td>
   </tr>
   <tr>
