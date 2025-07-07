@@ -14,7 +14,7 @@
     <td>нула-адресни</td>
   </tr>
   <tr>
-    <td colspan="2" style="text-align: center">Процеси</td>
+    <td colspan="2" align="center">Процеси</td>
   <tr>
     <td>Распоређивање</td>
     <td>FCFS - без прекидања</td>
@@ -24,7 +24,7 @@
     <td>команда за (од)блокирање</td>
   </tr>
   <tr>
-    <td colspan="2" style="text-align: center">Меморија</td>
+    <td colspan="2" align="center">Меморија</td>
   <tr>
   <tr>
     <td>Управљање меморијом</td>
@@ -39,7 +39,7 @@
     <td>симулирани диск SSTF</td>
   </tr>
   <tr>
-    <td colspan="2" style="text-align: center">Систем датотека</td>
+    <td colspan="2" align="center">Систем датотека</td>
   <tr>
   <tr>
     <td>Организација</td>
