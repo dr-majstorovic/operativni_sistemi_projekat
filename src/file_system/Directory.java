@@ -42,7 +42,9 @@ public class Directory {
                 return;
             }
         }
-        directories.add(new Directory(name));
+        Directory n_dir = new Directory(name);
+        directories.add(n_dir);
+        System.out.println("System: made a new directory named '" + n_dir.name + "'");
     }
 
     public void newFile(String name){
@@ -56,6 +58,8 @@ public class Directory {
                 return;
             }
         }
-        files.add(new File(name));
+        File n_file = new File(name);
+        files.add(n_file);
+        System.out.println("System: made a new file named '" + n_file.getName() + "'");
     }
 }

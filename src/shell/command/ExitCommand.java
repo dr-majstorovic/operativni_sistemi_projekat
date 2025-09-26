@@ -2,9 +2,11 @@ package shell.command;
 
 import file_system.Directory;
 
+import java.util.Stack;
+
 public class ExitCommand implements Command{
     @Override
-    public void execute(Directory directory, String[] args) {
+    public void execute(Stack<Directory> dir_stack, String[] args) {
         try {
             Thread.sleep(300);
             System.out.println("Shutting down...");

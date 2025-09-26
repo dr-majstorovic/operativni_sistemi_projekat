@@ -2,9 +2,11 @@ package shell.command;
 
 import file_system.Directory;
 
+import java.util.Stack;
+
 public class HelpCommand implements Command{
     @Override
-    public void execute(Directory directory, String[] args) {
+    public void execute(Stack<Directory> dir_stack, String[] args) {
         System.out.println("List of available commands:");
         System.out.println(">> cd <directory> << changes working directory relative to the current one");
         System.out.println(">> dir << lists contents of current directory");

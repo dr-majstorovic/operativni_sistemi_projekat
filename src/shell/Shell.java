@@ -29,15 +29,16 @@ public class Shell {
             switch (command[0]){
                 case "help": commands.get("help").execute(dir_stack, null); break;
                 case "cd": {
-                    commands.get("cd").execute(current_path, Arrays.copyOfRange(command, 1, command.length));
+                    commands.get("cd").execute(dir_stack, Arrays.copyOfRange(command, 1, command.length));
                 } break;
-                case "dir": commands.get("dir").execute(current_path, Arrays.copyOfRange(command, 1, command.length)); break;
-                case "ps": commands.get("ps").execute(current_path, null); break;
-                case "mkdir": commands.get("mkdir").execute(current_path, Arrays.copyOfRange(command, 1, command.length)); break;
-                case "run": commands.get("run").execute(current_path, Arrays.copyOfRange(command, 1, command.length)); break;
-                case "mem": commands.get("mem").execute(current_path, null); break;
-                case "exit": commands.get("exit").execute(current_path, null); break;
-                case "rm": commands.get("rm").execute(current_path, Arrays.copyOfRange(command, 1, command.length)); break;
+                case "dir": commands.get("dir").execute(dir_stack, Arrays.copyOfRange(command, 1, command.length)); break;
+                case "ps": commands.get("ps").execute(dir_stack, null); break;
+                case "mkdir": commands.get("mkdir").execute(dir_stack, Arrays.copyOfRange(command, 1, command.length)); break;
+                case "new": commands.get("new").execute(dir_stack, Arrays.copyOfRange(command, 1, command.length)); break;
+                case "run": commands.get("run").execute(dir_stack, Arrays.copyOfRange(command, 1, command.length)); break;
+                case "mem": commands.get("mem").execute(dir_stack, null); break;
+                case "exit": commands.get("exit").execute(dir_stack, null); break;
+                case "rm": commands.get("rm").execute(dir_stack, Arrays.copyOfRange(command, 1, command.length)); break;
                 default:
                     System.out.println("invalid command, dude"); break;
             }
@@ -51,6 +52,7 @@ public class Shell {
         commands.put("dir", new ListDirectoryCommand());
         commands.put("ps", new ListProcessCommand());
         commands.put("mkdir", new MakeDirectoryCommand());
+        commands.put("new", new NewCommand());
         commands.put("run", new RunCommand());
         commands.put("mem", new MemoryCommand());
         commands.put("exit", new ExitCommand());
