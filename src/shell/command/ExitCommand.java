@@ -2,7 +2,7 @@ package shell.command;
 
 public class ExitCommand implements Command{
     @Override
-    public void execute(String[] args) {
+    public void execute(String path, String[] args) {
         try {
             Thread.sleep(300);
             System.out.println("Shutting down...");

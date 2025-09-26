@@ -2,7 +2,7 @@ package shell.command;
 
 public class HelpCommand implements Command{
     @Override
-    public void execute(String[] args) {
+    public void execute(String path, String[] args) {
         System.out.println("List of available commands:");
         System.out.println(">> cd <directory> << changes working directory relative to the current one");
         System.out.println(">> dir << lists contents of current directory");

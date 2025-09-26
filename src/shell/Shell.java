@@ -1,5 +1,6 @@
 package shell;
 
+import file_system.Directory;
 import shell.command.*;
 
 import java.util.*;
@@ -7,6 +8,8 @@ import java.util.*;
 public class Shell {
     public static void main(String[] args) {
         Map<String, Command> commands = loadCommands();
+        String current_path = "root";
+        Directory root = new Directory("root");
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("__        __   _                            _ \n" +
@@ -18,19 +21,21 @@ public class Shell {
                 "         Welcome to OS simulator\n" +
                 "         Type 'help' for commands\n");
         while(true){
-            System.out.print("OS> ");
+            System.out.print(current_path + "> ");
             String line = scanner.nextLine();
             String[] command = line.split(" ");
             switch (command[0]){
-                case "help": commands.get("help").execute(null); break;
-                case "cd": commands.get("cd").execute(Arrays.copyOfRange(command, 1, command.length)); break;
-                case "dir": commands.get("dir").execute(Arrays.copyOfRange(command, 1, command.length)); break;
-                case "ps": commands.get("ps").execute(null); break;
-                case "mkdir": commands.get("mkdir").execute(Arrays.copyOfRange(command, 1, command.length)); break;
-                case "run": commands.get("run").execute(Arrays.copyOfRange(command, 1, command.length)); break;
-                case "mem": commands.get("mem").execute(null); break;
-                case "exit": commands.get("exit").execute(null); break;
-                case "rm": commands.get("rm").execute(Arrays.copyOfRange(command, 1, command.length)); break;
+                case "help": commands.get("help").execute(current_path, null); break;
+                case "cd": {
+                    commands.get("cd").execute(current_path, Arrays.copyOfRange(command, 1, command.length));
+                } break;
+                case "dir": commands.get("dir").execute(current_path, Arrays.copyOfRange(command, 1, command.length)); break;
+                case "ps": commands.get("ps").execute(current_path, null); break;
+                case "mkdir": commands.get("mkdir").execute(current_path, Arrays.copyOfRange(command, 1, command.length)); break;
+                case "run": commands.get("run").execute(current_path, Arrays.copyOfRange(command, 1, command.length)); break;
+                case "mem": commands.get("mem").execute(current_path, null); break;
+                case "exit": commands.get("exit").execute(current_path, null); break;
+                case "rm": commands.get("rm").execute(current_path, Arrays.copyOfRange(command, 1, command.length)); break;
                 default:
                     System.out.println("invalid command, dude"); break;
             }
