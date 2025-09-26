@@ -1,8 +1,10 @@
 package shell.command;
 
+import file_system.Directory;
+
 public class HelpCommand implements Command{
     @Override
-    public void execute(String path, String[] args) {
+    public void execute(Directory directory, String[] args) {
         System.out.println("List of available commands:");
         System.out.println(">> cd <directory> << changes working directory relative to the current one");
         System.out.println(">> dir << lists contents of current directory");

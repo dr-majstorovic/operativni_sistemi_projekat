@@ -1,8 +1,10 @@
 package shell.command;
 
+import file_system.Directory;
+
 public class ExitCommand implements Command{
     @Override
-    public void execute(String path, String[] args) {
+    public void execute(Directory directory, String[] args) {
         try {
             Thread.sleep(300);
             System.out.println("Shutting down...");

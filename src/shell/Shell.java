@@ -10,6 +10,8 @@ public class Shell {
         Map<String, Command> commands = loadCommands();
         String current_path = "root";
         Directory root = new Directory("root");
+        Stack<Directory> dir_stack = new Stack<>();
+        dir_stack.push(root);
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("__        __   _                            _ \n" +
@@ -25,7 +27,7 @@ public class Shell {
             String line = scanner.nextLine();
             String[] command = line.split(" ");
             switch (command[0]){
-                case "help": commands.get("help").execute(current_path, null); break;
+                case "help": commands.get("help").execute(dir_stack, null); break;
                 case "cd": {
                     commands.get("cd").execute(current_path, Arrays.copyOfRange(command, 1, command.length));
                 } break;

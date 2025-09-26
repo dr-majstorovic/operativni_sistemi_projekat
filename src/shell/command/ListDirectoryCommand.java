@@ -1,10 +1,19 @@
 package shell.command;
 
-import java.util.Arrays;
+import file_system.Directory;
+import file_system.File;
 
 public class ListDirectoryCommand implements Command{
     @Override
-    public void execute(String path, String[] args) {
-        System.out.println("Echo: dir " + Arrays.toString(args));
+    public void execute(Directory directory, String[] args) {
+        System.out.println("-- Directories:");
+        for(Directory x: directory.getDirectories()){
+            System.out.println("    " + x.getName());
+        }
+        System.out.println("-- Files:");
+        for(File x: directory.getFiles()){
+            System.out.println("    " + x.getName());
+        }
+        System.out.println("-- End");
     }
 }
