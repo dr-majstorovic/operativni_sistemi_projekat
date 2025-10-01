@@ -4,9 +4,9 @@ public class File {
     private String name;
     private String content;
 
-    public File(String name){
+    public File(String name, String content) {
         this.name = name;
-        this.content = "";
+        this.content = content;
     }
 
     public String getName() {
@@ -17,11 +17,13 @@ public class File {
         return content;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public void setContent(String content) {
         this.content = content;
     }
+
+    @Override
+    public String toString() {
+        return "File{name='" + name + "', content='" + content + "'}";
+    }
 }
+
