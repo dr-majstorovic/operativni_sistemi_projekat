@@ -1,13 +1,24 @@
 package core;
-
 import file_system.Directory;
 import file_system.File;
 
+import java.util.Arrays;
+
 public class FileSystemManager {
     private Directory rootDirectory;
+    private Directory currentDirectory;
 
     public FileSystemManager() {
         this.rootDirectory = new Directory("root");
+        this.currentDirectory = rootDirectory;
+    }
+
+    public Directory getCurrentDirectory() {
+        return currentDirectory;
+    }
+
+    public void setCurrentDirectory(Directory dir) {
+        this.currentDirectory = dir;
     }
 
     // Dodavanje fajla u određeni path
@@ -52,7 +63,42 @@ public class FileSystemManager {
         return current;
     }
 
+    // brisanje fajla iz direktorijuma
+    public boolean removeFile(String path) {
+        String[] parts = path.split("/");
+        String fileName = parts[parts.length - 1];
+        String dirPath = String.join("/", Arrays.copyOf(parts, parts.length - 1));
+
+        Directory dir = navigateToDirectory(dirPath);
+        if (dir != null) {
+            return dir.removeFile(fileName);
+        }
+        return false;
+    }
+
+    // brisanje direktorijuma
+    public boolean removeDirectory(String path) {
+        String[] parts = path.split("/");
+        String dirName = parts[parts.length - 1];
+        String parentPath = String.join("/", Arrays.copyOf(parts, parts.length - 1));
+
+        Directory parent = navigateToDirectory(parentPath);
+        if (parent != null) {
+            return parent.removeDirectory(dirName);
+        }
+        return false;
+    }
+
     public Directory getRootDirectory() {
         return rootDirectory;
+    }
+
+    public Directory findSubDirectory(Directory current, String name) {
+        for (Directory d : current.getSubDirectories()) {
+            if (d.getName().equals(name)) {
+                return d;
+            }
+        }
+        return null;
     }
 }
