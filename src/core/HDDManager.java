@@ -2,8 +2,6 @@ package core;
 
 import memory.HDD;
 
-import java.util.Map;
-
 public class HDDManager {
     private HDD hdd;
 
@@ -24,5 +22,24 @@ public class HDDManager {
     // 3. provjera da li postoji podatak na adresi
     public boolean isDataInDisk(String address) {
         return hdd.getMemory().containsKey(address);
+    }
+
+    // Upis fajla na HDD
+    public void createFile(String path, String content) {
+        hdd.getMemory().put(path, content);
+    }
+
+    // Čitanje fajla sa HDD-a
+    public String readFile(String path) {
+        return hdd.getMemory().get(path);
+    }
+
+    // Dodavanje direktorijuma (samo marker da postoji)
+    public void createDirectory(String path) {
+        hdd.getMemory().put(path, "DIR");
+    }
+
+    public void removeFromDisk(String address) {
+        hdd.getMemory().remove(address);
     }
 }

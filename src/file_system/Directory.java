@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Directory {
     private String name;
+    private Directory parent;
     private List<File> files;
     private List<Directory> subDirectories;
 
@@ -31,7 +32,24 @@ public class Directory {
     }
 
     public void addDirectory(Directory dir) {
+        dir.setParent(this);
         subDirectories.add(dir);
+    }
+
+    public Directory getParent() {
+        return parent;
+    }
+
+    public void setParent(Directory parent) {
+        this.parent = parent;
+    }
+
+    public boolean removeFile(String name) {
+        return files.removeIf(f -> f.getName().equals(name));
+    }
+
+    public boolean removeDirectory(String name) {
+        return subDirectories.removeIf(d -> d.getName().equals(name));
     }
 
     @Override
