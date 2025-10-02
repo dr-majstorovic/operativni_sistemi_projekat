@@ -1,0 +1,10 @@
+DIR bin
+DIR home
+DIR sys
+
+FILE path=home/readme.txt content=Dobrodosli u OS simulator!
+FILE path=bin/proc1.asm content=LOAD 0;LOAD 1;ADD;STORE 2;HALT
+FILE path=bin/proc2.asm content=LOAD 3;LOAD 4;ADD;LOAD 5;ADD;LOAD 3;DIV;STORE 6;HALT
+FILE path=sys/init.asm content=LOAD 10;STORE 11;HALT
+
+PROCESS sys/init.asm 32

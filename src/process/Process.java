@@ -1,17 +1,20 @@
 package process;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
 public class Process {
     private int id;
     private ProcessState state;
     private String code;
+    private PCB pcb;
+    private int executedCount;
 
     public Process(int id, String code) {
         this.id = id;
         this.code = code;
         this.state = ProcessState.NEW;
+        pcb = new PCB(id);
+        executedCount = 0;
     }
 
     public void start() {
@@ -42,22 +45,31 @@ public class Process {
         return state;
     }
 
-    public String[] getInstructions(){
-        String[] instructions = code.split(";");
-        for (String i: instructions)
-            i = i.strip();
-
-        return instructions;
+    public String[] getInstructions() {
+        return Arrays.stream(code.split(";"))
+                .map(String::strip)
+                .filter(s -> !s.isEmpty())
+                .toArray(String[]::new);
     }
+
+    public PCB getPCB() { return pcb; }
+    public void setPCB(PCB pcb) { this.pcb = pcb; }
 
     public int getSize(){
         return getInstructions().length;
+    }
+
+    public int getExecutedInstructions() {
+        return executedCount;
+    }
+
+    public void executedCountIncrement(){
+        executedCount++;
     }
 
     @Override
     public String toString() {
         return "Process{id=" + id + ", state=" + state + ", code=" + code + "}";
     }
+
 }
-
-
